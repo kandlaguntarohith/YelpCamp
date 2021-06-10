@@ -13,6 +13,19 @@
     <title>YelpCamp</title>
   </head>
   <body class="d-flex flex-column vh-100">
+    <style>
+      /* width */
+      ::-webkit-scrollbar {
+        width: 10px;
+        height: 20px; 
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: grey;
+        border-radius: 10px;
+      }
+    </style>
     <%- include('../partials/navbar') %>
     <main class="container mt-5"><%- body %></main>
     <%- include('../partials/footer') %>
