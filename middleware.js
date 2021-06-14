@@ -42,6 +42,7 @@ module.exports.validateReview = (req, res, next) => {
 };
 
 module.exports.validateCampground = (req, res, next) => {
+  // console.log(req.body);
   const result = campgroundSchema.validate(req.body);
   if (result.error) {
     const msg = result.error.details.map((el) => el.message).join(",");

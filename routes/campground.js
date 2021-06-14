@@ -5,11 +5,15 @@ const catchError = require("../utils/catch-error");
 const { isLoggedIn, validateCampground, isAuthor } = require("../middleware");
 const campgrounds = require("../controller/campground");
 const campground = require("../models/campground");
+const multer = require("multer");
+const { storage } = require("../cloudinary/index");
+const upload = multer({storage});
 
 router
   .route("/")
   .post(
     isLoggedIn,
+    upload.array("image"),
     validateCampground, //middleware
     catchError(campgrounds.postCampground)
   )
@@ -29,6 +33,7 @@ router
   .put(
     isLoggedIn,
     isAuthor,
+    upload.array("image"),
     validateCampground,
     catchError(campgrounds.putCampground)
   )
