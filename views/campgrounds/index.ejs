@@ -5,7 +5,15 @@
 <div class="card mb-3">
   <div class="row">
     <div class="col-md-4">
+      <% if(camp.images.length > 0) {%>
       <img src="<%=camp.images[0].url %> " alt="" class="img-fluid" />
+      <% }else{ %>
+      <img
+        src="https://cdn.allmissoula.com/images/content/20143_55e874_gros_ventre_campground_lg.jpg"
+        alt=""
+        class="img-fluid"
+      />
+      <% } %>
     </div>
     <div class="col-md-8">
       <div class="card-body">
