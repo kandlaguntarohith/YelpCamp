@@ -144,6 +144,8 @@ app.use((error, req, res, next) => {
   const { message = "something went wrong !", statusCode = 500, stack } = error;
   res.status(statusCode).render("errorpage", { message, stack });
 });
-app.listen(3000, () => {
-  console.log("Server Running on Port : 3000");
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server Running on Port : ${port}`);
 });
