@@ -8,6 +8,7 @@ const map = new mapboxgl.Map({
   zoom: 7, // starting zoom
 });
 
+map.addControl(new mapboxgl.NavigationControl());
 // Set options
 var marker = new mapboxgl.Marker({
   color: "#4B0082",

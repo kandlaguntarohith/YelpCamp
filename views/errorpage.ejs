@@ -5,7 +5,9 @@
       <h4 class="alert-heading"><%=message %></h4>
       <!-- <p></p> -->
       <hr />
+      <% if(process.env.NODE_ENV !== 'production') { %>
       <p class="mb-0"><%=stack%></p>
+      <% } %>
     </div>
   </div>
 </div>

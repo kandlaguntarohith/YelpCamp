@@ -35,10 +35,17 @@ module.exports.renderEditCampground = async (req, res) => {
 };
 
 module.exports.putCampground = async (req, res) => {
+  const geoData = await geocoder
+    .forwardGeocode({
+      query: req.body.campground.location,
+      limit: 1,
+    })
+    .send();
   const campground = await CampGround.findByIdAndUpdate(
     req.params.id,
     req.body.campground
   );
+  // campground.geometry = geoData.body.features[0].geometry;
   if (!campground) {
     req.flash("error", "campground not found !!");
     res.redirect("/campgrounds");
@@ -46,6 +53,8 @@ module.exports.putCampground = async (req, res) => {
   const images = req.files.map((file) => {
     return { url: file.path, filename: file.filename };
   });
+  campground.geometry = geoData.body.features[0].geometry;
+  console.log(campground.geometry);
   campground.images.push(...images);
   await campground.save();
   if (req.body.deleteImages) {
